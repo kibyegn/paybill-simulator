@@ -1,0 +1,37 @@
+<h1>Transactions</h1>
+
+<table class="table">
+<thead>
+  <tr>
+  <th>MP_TRANSACTION_ID</th>
+  <th>BILLER_BUSINESS_NUMBER</th>
+  <th>TRANSACTION_DATE</th>
+  <th>TRANSACTION_TYPE</th>
+  <th>ACCOUNT_NUMBER</th>
+  <th>SENDER_MSISDN</th>
+  <th>SENDER_FIRST_NAME</th>
+  <th>SENDER_MIDDLE_NAME</th>
+  <th>SENDER_LAST_NAME</th>
+  <th>AMOUNT</th>
+  <th>CURRENCY</th>
+  </tr>
+</thead>
+<tfoot></tfoot>
+<tbody>
+<% @transactions.each do | transaction | %>
+  <tr class="<%= cycle("even", "odd") %>">
+    <td><%= transaction.mp_transaction_id %></td>
+    <td><%= transaction.biller_business_number %></td>
+    <td><%= transaction.transaction_date %></td>
+    <td><%= transaction.type %></td
+    <td><%= transaction.account_number %></td
+    <td><%= transaction.sender_msisdn %></td
+    <td><%= transaction.sender_first_name %></td>
+    <td><%= transaction.sender_middle_name %></td>
+    <td><%= transaction.sender_last_name %></td>
+    <td><%= transaction.amount %></td>
+    <td><%= transaction.currency %></td>
+  </tr>
+<% end %>
+</tbody>
+</table>

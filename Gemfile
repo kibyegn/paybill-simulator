@@ -1,6 +1,14 @@
 source 'http://rubygems.org'
 
 gem 'rails', '3.0.5'
+gem 'will_paginate'
+gem 'builder'
+gem 'nokogiri'
+
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'web-app-theme'
+end
 
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'

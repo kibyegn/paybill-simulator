@@ -1,0 +1,31 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  mp_transaction_id: 
+  biller_business_number: 
+  transaction_date: 
+  transaction_type: 
+  account_number: 
+  sender_msisdn: 
+  sender_first_name: 
+  sender_middle_name: 
+  sender_last_name: 
+  amount: 
+  currency: 
+  status: 
+  description: MyString
+
+two:
+  mp_transaction_id: 
+  biller_business_number: 
+  transaction_date: 
+  transaction_type: 
+  account_number: 
+  sender_msisdn: 
+  sender_first_name: 
+  sender_middle_name: 
+  sender_last_name: 
+  amount: 
+  currency: 
+  status: 
+  description: MyString
