@@ -4,6 +4,8 @@ gem 'rails', '3.0.5'
 gem 'will_paginate'
 gem 'builder'
 gem 'nokogiri'
+gem 'rufus-scheduler'
+gem 'typhoeus'
 
 group :development, :test do
   gem 'rspec-rails'
