@@ -1,7 +1,9 @@
 PaybillSimulator::Application.routes.draw do
+  resources :events
+
   root :to => "transactions#index"
 
-  resources :transactions, :only => [:index, :show, :update, :destroy]
+  resources :transactions, :only => [:index, :show, :new, :create, :update, :destroy]
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

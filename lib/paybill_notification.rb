@@ -3,7 +3,7 @@ require 'typhoeus'
 
 class PaybillNotification
 
-  SERVICE_URL = "http://localhost:3000"
+  SERVICE_URL = "http://localhost:3000/hooks/create"
     
   def self.post_transactions
     #Named it response because the post function sends the post and receives the
