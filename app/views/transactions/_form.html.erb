@@ -1,0 +1,61 @@
+<%= form_for(@transaction) do |f| %>
+<% if @transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@transaction.errors.count, "error") %> prohibited this transaction from being saved:</h2>
+
+      <ul>
+      <% @transaction.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :mp_transaction_id %><br />
+    <%= f.text_field :mp_transaction_id %>
+  </div>
+  <div class="field">
+    <%= f.label :biller_business_number %><br />
+    <%= f.text_field :biller_business_number %>
+  </div>
+  <div class="field">
+    <%= f.label :transaction_date %><br />
+    <%= f.date_select :transaction_date %>
+  </div>
+  <div class="field">
+    <%= f.label :transaction_type %><br />
+    <%= f.select('transaction_type', {'Paybill' => 'Paybill'}) %>
+  </div>
+  <div class="field">
+    <%= f.label :account_number %><br />
+    <%= f.text_field :account_number %>
+  </div>
+   <div class="field">
+    <%= f.label :sender_msisdn %><br />
+    <%= f.text_field :sender_msisdn %>
+  </div>
+  <div class="field">
+    <%= f.label :sender_first_name %><br />
+    <%= f.text_field :sender_first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :sender_middle_name %><br />
+    <%= f.text_field :sender_middle_name %>
+  </div>
+  <div class="field">
+    <%= f.label :sender_last_name %><br />
+    <%= f.text_field :sender_last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :currency %><br />
+    <%= f.text_field :currency %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
