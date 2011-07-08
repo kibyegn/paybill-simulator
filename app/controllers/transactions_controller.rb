@@ -9,7 +9,7 @@ class TransactionsController < ApplicationController
 
     respond_to do |format|
       format.html
-      format.xml { render :xml => Transaction.build_xml }
+      format.xml { render :xml => Transaction.build_all_xml }
     end
   end
 
