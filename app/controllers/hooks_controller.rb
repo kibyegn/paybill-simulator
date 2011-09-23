@@ -13,22 +13,13 @@ class HooksController < ApplicationController
 =end
 
   def create
-    if params["RecordSet"]["Record"].instance_of? Array
-      params["RecordSet"]["Record"].each do |h|
-        @transaction = Transaction.find_by_mp_transaction_id(h["MP_TRANSACTION_ID"])
-        if @transaction.update_attributes(:t_status => h["STATUS"])
+      Array.wrap(params["RecordSet"]["Record"]).each do |record|
+        @transaction = Transaction.find_by_mp_transaction_id(record["MP_TRANSACTION_ID"])
+        if @transaction.update_attributes(:status => record["STATUS"])
           render :nothing => true, :status => 200 and return
         else
           #TODO print to error log
         end
       end
-    else
-      @transaction = Transaction.find_by_mp_transaction_id(params["RecordSet"]["Record"]["MP_TRANSACTION_ID"])
-      if @transaction.update_attributes(:t_status => params["RecordSet"]["Record"]["STATUS"])
-        render :nothing => true, :status => 200 and return
-      else
-        #TODO print to error log
-      end
-    end
   end
 end

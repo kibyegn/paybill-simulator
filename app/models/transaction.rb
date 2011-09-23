@@ -50,4 +50,45 @@ class Transaction < ActiveRecord::Base
     end
     return doc.to_xml
   end
+  
+  def self.build_post_params(id)
+    transaction = Transaction.find(id)
+    sender_msisdn = internationalize_msisdn(transaction.sender_msisdn)
+    
+    text = <<EOS
+#{transaction.mp_transaction_id} Confirmed.on #{transaction.created_at.strftime('%-d/%-m/%y')} at 
+#{transaction.created_at.strftime('%I:%M %p')} Ksh.#{transaction.amount} 
+received from #{transaction.sender_first_name} #{transaction.sender_middle_name} 
+#{transaction.sender_last_name} #{sender_msisdn}.Account Number #{transaction.account_number} New Utility balance is
+Ksh 4,930,215.00
+EOS
+    post_data = {
+      'id' => id,
+      'orig' => 'MPESA',
+      'dest' => internationalize_msisdn(transaction.biz_terminal_number),
+      'tstamp' => transaction.created_at.strftime("%Y-%m-%d %H:%M:%S.0"),
+      'text' => text,
+      'user' => 'k2',
+      'pass' => 'k2global',
+      'mpesa_code' => transaction.mp_transaction_id,
+      'mpesa_acc' => transaction.account_number,
+      'mpesa_msisdn' => sender_msisdn,
+      'mpesa_trx_date' => transaction.created_at.strftime("%-d/%-m/%y"),
+      'mpesa_trx_time' => transaction.created_at.strftime('%I:%M %p'),
+      'mpesa_amt' => transaction.amount,
+      'mpesa_sender' => "#{transaction.sender_first_name} #{transaction.sender_middle_name} #{transaction.sender_last_name}",
+      'customer_id' => 2,
+      'route_method_id' => 2,
+      'route_method_name' => 'HO1'
+    }
+    
+    return post_data
+  end
+  
+  def self.internationalize_msisdn(number)
+    slice = number
+    slice.slice!(0)
+    return "254" << slice
+  end
+  
 end

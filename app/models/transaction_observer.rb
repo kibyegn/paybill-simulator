@@ -8,11 +8,14 @@ class TransactionObserver < ActiveRecord::Observer
 
   private
   def send_hook(record)
-    uri = "http://localhost:3000/hooks/create"
+    # uri = "http://www.postbin.org/my9nge"  # Use this to test the xml post.
+    # uri = "http://localhost:3000/hooks/create"
+    uri = "http://localhost:3000/hooks/dispatch"
     # sending just one record call build_xml(record.id), posting all records call build_all_xml
     response = Typhoeus::Request.post(uri,
-      :body => Transaction.build_xml(record.id),
-      :headers => {'Content-Type' => "text/xml; charset=utf-8"})
+      :params => Transaction.build_post_params(record.id),
+      :headers => {'Content-Type' => "application/x-www-form-urlencoded; charset=utf-8"}) # change content type
+                                                                                          # to 'type/xml' when sending xml
       
       #TODO Process the XML response
       
